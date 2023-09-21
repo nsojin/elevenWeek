@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import com.example.elevenweek.data.Documents
+import com.example.elevenweek.data.SearchData
 import com.example.elevenweek.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    var searchImage = mutableListOf<Documents>()
 
     private val tabtitleArray = arrayOf(
         "검색", "보관함"
@@ -19,13 +19,12 @@ class MainActivity : AppCompatActivity() {
         R.drawable.search,
         R.drawable.save
     )
+
+    var likeimage: ArrayList<SearchData> = ArrayList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        val toolbar = binding.toolbar
-        setSupportActionBar(toolbar)
-
 
         var viewPager = binding.viewpager
         var tabLayout = binding.tabLayout
@@ -41,5 +40,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search, menu)
         return true
+    }
+
+    fun addLikedImage(image : SearchData){
+        if(!likeimage.contains(image)){
+            likeimage.add(image)
+        }
+    }
+
+    fun removeLikeImage(image: SearchData){
+        likeimage.remove(image)
     }
 }

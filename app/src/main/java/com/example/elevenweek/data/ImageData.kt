@@ -2,13 +2,12 @@ package com.example.elevenweek.data
 
 import com.google.gson.annotations.SerializedName
 
-data class ImageData(val response: ImageResponse)
 
-data class ImageResponse(
+data class ImageData(
     @SerializedName("meta")
     val meta : Meta,
     @SerializedName("documents")
-    val documents : Documents
+    val documents : ArrayList<Documents>
 )
 
 data class Meta (

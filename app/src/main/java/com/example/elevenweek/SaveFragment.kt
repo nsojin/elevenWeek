@@ -1,10 +1,14 @@
 package com.example.elevenweek
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.elevenweek.data.SearchData
+import com.example.elevenweek.databinding.FragmentSaveBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,9 +21,21 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class SaveFragment : Fragment() {
+
+    private lateinit var Context1 : Context
+    private var binding: FragmentSaveBinding? = null
+    private lateinit var adapter: SaveAdapter
+
+    private var likedImage: List<SearchData> = listOf()
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    override fun onAttach(context: Context){
+        super.onAttach(context)
+        Context1 = context
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +49,24 @@ class SaveFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_save, container, false)
+
+        val main = activity as MainActivity
+        likedImage = main.likeimage
+
+        adapter = SaveAdapter(Context1).apply {
+            image = likedImage.toMutableList()
+        }
+        binding = FragmentSaveBinding.inflate(inflater, container, false).apply {
+            saveRecyclerview.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+            saveRecyclerview.adapter = adapter
+        }
+        return binding?.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        binding = null
     }
 
     companion object {
