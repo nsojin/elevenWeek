@@ -2,6 +2,7 @@ package com.example.elevenweek
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,20 @@ class SaveFragment : Fragment() {
         Context1 = context
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.d("save","sj savetragemnt onstart ")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val main = activity as MainActivity
+        likedImage = main.likeimage
+        adapter.image = likedImage.toMutableList()
+        adapter.notifyDataSetChanged()
+        Log.d("save","sj savetragemnt onresume ")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -50,8 +65,9 @@ class SaveFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val main = activity as MainActivity
-        likedImage = main.likeimage
+        Log.d("save","sj savetragemnt oncreateview ")
+
+
 
         adapter = SaveAdapter(Context1).apply {
             image = likedImage.toMutableList()

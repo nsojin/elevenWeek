@@ -2,6 +2,7 @@ package com.example.elevenweek
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import com.example.elevenweek.data.Documents
 import com.example.elevenweek.data.SearchData

@@ -77,6 +77,7 @@ class SearchAdapter(private  val Context1 : Context) : RecyclerView.Adapter<Sear
             else {
                 (Context1 as MainActivity).removeLikeImage(image)
             }
+            notifyItemChanged(position)
             }
         }
     }
