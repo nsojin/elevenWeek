@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.elevenweek.data.ImageData
 import com.example.elevenweek.data.SearchData
@@ -53,6 +54,24 @@ class SearchFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
+    }
+
+    override fun onResume(){
+        super.onResume()
+
+        val main = activity as MainActivity
+
+        var likeimage = main.likeimage
+
+        for(i in 0..adapter.image.size-1){
+            for(j in 0..likeimage.size-1) {
+                if (likeimage[j].url != adapter.image[i].url) {
+                    adapter.image[i].like = false
+                    adapter.notifyItemChanged(i)
+                    break
+                }
+            }
+        }
     }
 
     override fun onCreateView(

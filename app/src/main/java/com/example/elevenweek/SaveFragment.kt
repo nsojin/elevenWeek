@@ -67,8 +67,6 @@ class SaveFragment : Fragment() {
 
         Log.d("save","sj savetragemnt oncreateview ")
 
-
-
         adapter = SaveAdapter(Context1).apply {
             image = likedImage.toMutableList()
         }
