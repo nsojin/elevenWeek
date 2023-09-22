@@ -64,10 +64,8 @@ class SearchFragment : Fragment() {
         var likeimage = main.likeimage
 
         for(i in 0..adapter.image.size-1){
-            if(i == 0)
             for(j in 0..likeimage.size-1) {
                 if (likeimage[j].url != adapter.image[i].url) {
-                    Log.d("searchfrag","sj onResume position = $i likeFalse")
                     adapter.image[i].like = false
                 } else {
                     adapter.image[i].like = true
@@ -107,7 +105,6 @@ class SearchFragment : Fragment() {
             val query = binding.editText.text.toString()
             if(query.isNotEmpty()){
                 Utils.saveRecentSearch(requireContext(),query)
-                adapter.clearImage()
                 fetchImageResults(query)
                 Log.d("search","sj fetch")
             }

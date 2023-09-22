@@ -18,12 +18,6 @@ class SearchAdapter(private  val Context1 : Context) : RecyclerView.Adapter<Sear
 
     var image = ArrayList<SearchData>()
 
-    fun clearImage(){
-        image.clear()
-        notifyDataSetChanged()
-    }
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val binding = SearchImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ImageViewHolder(binding)
